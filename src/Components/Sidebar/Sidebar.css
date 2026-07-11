@@ -4,21 +4,20 @@
     height: 100vh;
     position: fixed;
     top: 0;
-    padding-top: 80px; /* Leaves space for your Navbar */
+    padding-top: 80px; 
     padding-left: 2%;
+    z-index: 100;
 }
 
-.shortcut-links .side-link {
+.shortcut-links .side-link, .side-link {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     width: fit-content;
-    flex-wrap: wrap;
     cursor: pointer;
 }
 
-/* Crucial step: Constrain the size of your giant icons */
-.shortcut-links .side-link img {
+.shortcut-links .side-link img, .side-link img {
     width: 25px;
     margin-right: 20px;
 }
@@ -28,7 +27,6 @@
     color: #5a5a5a;
 }
 
-/* Adds a subtle visual highlight for the active page */
 .shortcut-links .side-link.active p {
     color: #000;
     font-weight: 600;
@@ -48,47 +46,33 @@ hr {
     color: #5a5a5a;
 }
 
-.sidebar {
-    background: #fff;
-    width: 15%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    padding-top: 80px;
-    padding-left: 2%;
-}
-
-.side-link {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-
-.side-link img {
-    width: 25px;
-    margin-right: 20px;
-}
-.small-sidebar{
+.small-sidebar {
     width: 5%;
     padding-left: 1%;
 }
-.small-sidebar p {
-    display: none; /* Hides the text labels when sidebar is small */
+
+.small-sidebar p, .small-sidebar h3 {
+    display: none; 
 }
-.small-sidebar h3{
-    display: none;
-}
-.small-sidebar hr{
+
+.small-sidebar hr {
     width: 50%;
     margin-bottom: 25px;
 }
-.side-link.active img{
+
+.side-link.active img {
     padding-bottom: 2px;
     border-bottom: 3px solid red;
 }
+
+/* Mobile responsive rules - FIXED YET CLEAN */
 @media (max-width: 900px) {
+    /* 1. This hides the sidebar completely on mobile screens */
+    .sidebar, .small-sidebar {
+        display: none !important;
+    }
+
+    /* 2. This expands your video items to use the entire screen width */
     .container, 
     div[class*="container"] {
         padding-left: 5% !important;
