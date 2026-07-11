@@ -42,19 +42,24 @@ const PlayVideo = ({ videoId }) => {
     }, [videoId])
 
     useEffect(() => {
-        fetchChannelAndComments();
+        if (apiData) {
+            fetchChannelAndComments();
+        }
     }, [apiData])
 
+    // Safety structural return: Keeps the page from crashing while API loads data
     if (!apiData) {
-        return <div className='play-video'>Loading...</div>;
+        return <div className='play-video'>Loading video details...</div>;
     }
 
     return (
         <div className='play-video'>
             <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            
             <h3>{apiData.snippet.title}</h3>
+            
             <div className="play-video-info">
-                <p>{value_converter(apiData.statistics.viewCount)} views &bull; {moment(apiData.snippet.publishedAt).fromNow()} </p>
+                <p>{value_converter(apiData.statistics.viewCount)} Views &bull; {moment(apiData.snippet.publishedAt).fromNow()} </p>
                 <div>
                     <span><img src={like} alt="" /> {value_converter(apiData.statistics.likeCount)}</span>
                     <span><img src={dislike} alt="" /></span>
@@ -63,6 +68,7 @@ const PlayVideo = ({ videoId }) => {
                 </div>
             </div>
             <hr />
+            
             <div className="publisher">
                 <img src={channelData ? channelData.snippet.thumbnails.default.url : ""} alt="" />
                 <div>
@@ -71,10 +77,11 @@ const PlayVideo = ({ videoId }) => {
                 </div>
                 <button>Subscribe</button>
             </div>
+            
             <div className="vid-description">
-                <p>{apiData.snippet.description.slice(0, 250)}</p>
+                <p>{apiData.snippet.description.slice(0, 250)}...</p>
                 <hr />
-                <h4>{value_converter(apiData.statistics.commentCount)} comments</h4>
+                <h4>{value_converter(apiData.statistics.commentCount)} Comments</h4>
                 
                 {commentData.map((item, index) => {
                     const comment = item.snippet.topLevelComment.snippet;
