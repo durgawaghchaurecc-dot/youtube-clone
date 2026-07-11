@@ -65,14 +65,11 @@ hr {
     border-bottom: 3px solid red;
 }
 
-/* Mobile responsive rules - FIXED YET CLEAN */
 @media (max-width: 900px) {
-    /* 1. This hides the sidebar completely on mobile screens */
     .sidebar, .small-sidebar {
         display: none !important;
     }
 
-    /* 2. This expands your video items to use the entire screen width */
     .container, 
     div[class*="container"] {
         padding-left: 5% !important;

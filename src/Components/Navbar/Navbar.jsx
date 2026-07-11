@@ -9,7 +9,8 @@ import notification_icon from '../../assets/notification.png'
 import profile_icon from '../../assets/jack.png'
 import { Link, useNavigate } from 'react-router-dom'
 
-const navbar = ({setSidebar}) => {
+// Changed component name to start with an uppercase 'N'
+const Navbar = ({setSidebar}) => {
   const [searchQuery, setSearchQuery] = useState('')
   const navigate = useNavigate()
 
@@ -61,4 +62,4 @@ const navbar = ({setSidebar}) => {
   )
 }
 
-export default navbar
+export default Navbar
